@@ -1,0 +1,13 @@
+/* ===== Home Page Layout ===== */
+.home-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.home-page__main {
+  width: 100%;
+  flex-grow: 1;
+}

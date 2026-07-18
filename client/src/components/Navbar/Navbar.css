@@ -1,0 +1,111 @@
+/* ===== Navbar ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 96px;
+  padding: 0 64px;
+  background-color: #000000;
+  border-bottom: 4px solid #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+/* Wordmark + Badge */
+.navbar__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.navbar__wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+
+.navbar__badge {
+  background-color: #FF8400;
+  color: #000000;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  margin-top: 4px;
+  transform: rotate(3deg);
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid #000000;
+  display: inline-block;
+}
+
+/* Navigation Links */
+.navbar__links {
+  display: none;
+  align-items: center;
+  gap: 48px;
+}
+
+@media (min-width: 768px) {
+  .navbar__links {
+    display: flex;
+  }
+}
+
+.navbar__link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.navbar__link:hover {
+  color: #00FF0D;
+  transform: translateY(-2px);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+}
+
+/* CTA Button */
+.navbar__cta-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__cta {
+  background-color: #00FF0D;
+  color: #000000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.05em;
+  padding: 12px 24px;
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px 0px #FFFFFF;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.navbar__cta:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0px 0px #FFFFFF;
+}
+
+.navbar__cta:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}

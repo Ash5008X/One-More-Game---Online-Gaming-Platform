@@ -1,0 +1,191 @@
+/* ===== Featured Games Section ===== */
+.featured-games {
+  width: 100%;
+  padding: 80px 16px;
+  border-bottom: 4px solid #ffffff;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .featured-games {
+    padding: 80px 40px;
+  }
+}
+
+.featured-games__inner {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Section header */
+.featured-games__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  border-bottom: 4px solid #ffffff;
+  padding-bottom: 16px;
+}
+
+.featured-games__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.featured-games__view-all {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 4px;
+  transition: color 0.2s;
+}
+
+.featured-games__view-all:hover {
+  color: #00FF0D;
+}
+
+/* Game cards grid */
+.featured-games__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .featured-games__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-games__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Individual game card */
+.game-card {
+  background-color: #000000;
+  border: 4px solid #ffffff;
+  box-shadow: 6px 6px 0px 0px #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.game-card:hover {
+  transform: translate(-8px, -8px);
+}
+
+.game-card__image-wrap {
+  position: relative;
+  border-bottom: 4px solid #ffffff;
+  height: 256px;
+  overflow: hidden;
+}
+
+.game-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+  display: block;
+}
+
+.game-card:hover .game-card__image {
+  transform: scale(1.05);
+}
+
+.game-card__tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  transform: rotate(-2deg);
+  display: inline-block;
+  background-color: #FF6600;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 4px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.game-card__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.game-card__name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+}
+
+.game-card__desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #9ca3af;
+  margin: 0 0 24px 0;
+  flex-grow: 1;
+}
+
+.game-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 4px solid #353535;
+  padding-top: 16px;
+}
+
+.game-card__players {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-card__player-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #00FF0D;
+  border: 2px solid #000000;
+}
+
+.game-card__player-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.05em;
+  color: #00FF0D;
+}
+
+.game-card__arrow {
+  color: #ffffff;
+  transition: color 0.2s;
+}
+
+.game-card:hover .game-card__arrow {
+  color: #00FF0D;
+}
