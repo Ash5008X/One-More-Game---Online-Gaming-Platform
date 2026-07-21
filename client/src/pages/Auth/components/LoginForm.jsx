@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
 import Input from './Input';
 import PasswordInput from './PasswordInput';
 import SocialLogin from './SocialLogin';
@@ -12,6 +14,11 @@ const MailIcon = () => (
 );
 
 const LoginForm = ({ onToggle }) => {
+  const navigate = useNavigate();
+  const { login, error: authError } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,9 +33,18 @@ const LoginForm = ({ onToggle }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login submitted:', formData);
+    setErrorMsg('');
+    setLoading(true);
+    try {
+      await login(formData.email, formData.password);
+      navigate('/dashboard');
+    } catch (err) {
+      setErrorMsg(err.message || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,6 +54,9 @@ const LoginForm = ({ onToggle }) => {
         <p className="auth-form-subtitle">Continue playing. The arena awaits.</p>
 
         <form onSubmit={handleSubmit} className="auth-form" autoComplete="on">
+          {errorMsg && <div className="auth-error-msg" style={{ color: '#ff4b4b', fontSize: '0.875rem', marginBottom: '1rem', textAlign: 'center' }}>{errorMsg}</div>}
+          {authError && !errorMsg && <div className="auth-error-msg" style={{ color: '#ff4b4b', fontSize: '0.875rem', marginBottom: '1rem', textAlign: 'center' }}>{authError}</div>}
+
           <Input
             type="email"
             placeholder="Email Address"
@@ -75,8 +94,8 @@ const LoginForm = ({ onToggle }) => {
             </button>
           </div>
 
-          <button type="submit" className="auth-submit-btn" id="login-btn">
-            <span>LOGIN</span>
+          <button type="submit" className="auth-submit-btn" id="login-btn" disabled={loading}>
+            <span>{loading ? 'LOGGING IN...' : 'LOGIN'}</span>
             <span className="auth-btn-arrow">→</span>
           </button>
         </form>

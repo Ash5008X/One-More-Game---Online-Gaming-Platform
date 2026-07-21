@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
 import Input from './Input';
 import PasswordInput from './PasswordInput';
 import SocialLogin from './SocialLogin';
@@ -19,8 +21,13 @@ const MailIcon = () => (
 );
 
 const RegisterForm = ({ onToggle }) => {
+  const navigate = useNavigate();
+  const { register, error: authError } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
   const [formData, setFormData] = useState({
-    username: '',
+    fullName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -34,13 +41,23 @@ const RegisterForm = ({ onToggle }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg('');
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
+      setErrorMsg('Passwords do not match!');
       return;
     }
-    console.log('Register submitted:', formData);
+
+    setLoading(true);
+    try {
+      await register(formData.fullName, formData.email, formData.password);
+      navigate('/dashboard');
+    } catch (err) {
+      setErrorMsg(err.message || 'Registration failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,11 +67,14 @@ const RegisterForm = ({ onToggle }) => {
         <p className="auth-form-subtitle">Start your journey. Become a legend.</p>
 
         <form onSubmit={handleSubmit} className="auth-form" autoComplete="on">
+          {errorMsg && <div className="auth-error-msg" style={{ color: '#ff4b4b', fontSize: '0.875rem', marginBottom: '1rem', textAlign: 'center' }}>{errorMsg}</div>}
+          {authError && !errorMsg && <div className="auth-error-msg" style={{ color: '#ff4b4b', fontSize: '0.875rem', marginBottom: '1rem', textAlign: 'center' }}>{authError}</div>}
+
           <Input
             type="text"
-            placeholder="Fullname"
-            name="name"
-            value={formData.name}
+            placeholder="Full Name"
+            name="fullName"
+            value={formData.fullName}
             onChange={handleChange}
             required
             autoComplete="name"
@@ -90,8 +110,8 @@ const RegisterForm = ({ onToggle }) => {
             autoComplete="new-password"
           />
 
-          <button type="submit" className="auth-submit-btn" id="register-btn">
-            <span>CREATE ACCOUNT</span>
+          <button type="submit" className="auth-submit-btn" id="register-btn" disabled={loading}>
+            <span>{loading ? 'CREATING ACCOUNT...' : 'CREATE ACCOUNT'}</span>
             <span className="auth-btn-arrow">→</span>
           </button>
         </form>

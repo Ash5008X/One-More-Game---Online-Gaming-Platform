@@ -1,0 +1,169 @@
+/* ============================================================
+   ONE MORE GAME — Dashboard Navbar Styles
+   ============================================================ */
+
+.dash-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  background-color: #000000;
+  border-bottom: 2px solid #3b4b35;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+/* Brand */
+.dash-nav__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.dash-nav__wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #e2e2e2;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dash-nav__wordmark:hover {
+  color: #ffffff;
+}
+
+.dash-nav__badge {
+  background-color: #FF8400;
+  color: #000000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  margin-top: 3px;
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Nav links */
+.dash-nav__links {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .dash-nav__links {
+    display: flex;
+  }
+}
+
+.dash-nav__link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #e2e2e2;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.dash-nav__link:hover {
+  color: #00ff0d;
+}
+
+.dash-nav__link--active {
+  color: #00ff0d;
+  border-bottom: 4px solid #00ff0d;
+  padding-bottom: 4px;
+}
+
+/* Actions */
+.dash-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.dash-nav__icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #e2e2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.dash-nav__icon-btn:hover {
+  color: #00ff0d;
+}
+
+.dash-nav__icon-btn--notify {
+  position: relative;
+}
+
+.dash-nav__notify-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background: #ffb4ab;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.dash-nav__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1f1f1f;
+  box-shadow: 2px 2px 0px 0px #ffffff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dash-nav__avatar:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px 0px #00ff0d;
+  border-color: #00ff0d;
+}
+
+.dash-nav__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dash-nav {
+    padding: 0 16px;
+    height: 64px;
+  }
+
+  .dash-nav__actions {
+    gap: 12px;
+  }
+}
